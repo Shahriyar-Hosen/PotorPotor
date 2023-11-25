@@ -6,10 +6,15 @@
  */
 
 import React, {FC} from 'react';
-import {StatusBar, StyleSheet, useColorScheme, View} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import ChatScreen from './src/screens/ChatScreen';
+import Navigator from './src/navigation';
 
 const App: FC = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,13 +23,14 @@ const App: FC = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ChatScreen />
-    </View>
+
+      <Navigator />
+    </SafeAreaView>
   );
 };
 

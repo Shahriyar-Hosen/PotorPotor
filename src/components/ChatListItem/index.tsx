@@ -1,8 +1,17 @@
+import {useNavigation} from '@react-navigation/native';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import React, {FC} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+// Add these imports for type definition
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ParamListBase} from '@react-navigation/routers';
 
-export interface ICHatListItem {
+dayjs.extend(relativeTime);
+
+import {IRoute} from '../../navigation';
+
+export interface IChatListItem {
   chat: {
     id: string;
     user: {
@@ -16,9 +25,25 @@ export interface ICHatListItem {
   };
 }
 
-const ChatListItem: FC<ICHatListItem> = ({chat}) => {
+// Use `RouteProp` and `ParamListBase` to define the type for navigation
+type ChatScreenNavigationProp = NativeStackNavigationProp<
+  ParamListBase,
+  IRoute
+>;
+
+const ChatListItem: FC<IChatListItem> = ({chat}) => {
+  const {navigate} = useNavigation<ChatScreenNavigationProp>();
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={() =>
+        navigate('Chat', {
+          id: chat.id,
+          name: chat.user.name,
+          lastMessage: chat.lastMessage,
+        })
+      }
+      style={styles.container}>
       {/* User Avatar */}
       <Image source={{uri: chat.user.image}} style={styles.image} />
 
@@ -38,7 +63,7 @@ const ChatListItem: FC<ICHatListItem> = ({chat}) => {
           {chat.lastMessage.text}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
