@@ -1,26 +1,39 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
-const ChatListItem = () => {
+export interface ICHatListItem {
+  chat: {
+    id: string;
+    user: {
+      image: string;
+      name: string;
+    };
+    lastMessage: {
+      text: string;
+      createdAt: string;
+    };
+  };
+}
+
+const ChatListItem: FC<ICHatListItem> = ({chat}) => {
   return (
     <View style={styles.container}>
       {/* User Avatar */}
-      <Image
-        source={{
-          uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg',
-        }}
-        style={styles.image}
-      />
+      <Image source={{uri: chat.user.image}} style={styles.image} />
 
-      {/* Content Container */}
+      {/* content */}
       <View style={styles.content}>
-        {/* Row */}
         <View style={styles.row}>
-          <Text style={styles.name}>Lukas</Text>
-          <Text style={styles.subTitle}>07:30</Text>
+          <Text style={styles.name} numberOfLines={1}>
+            {chat.user.name}
+          </Text>
+
+          <Text style={styles.subTitle}>{chat.lastMessage.createdAt}</Text>
         </View>
 
-        <Text style={styles.subTitle}>Oke</Text>
+        <Text style={styles.subTitle} numberOfLines={2}>
+          {chat.lastMessage.text}
+        </Text>
       </View>
     </View>
   );
@@ -50,6 +63,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   name: {
+    color: 'black',
     fontWeight: 'bold',
     flex: 1,
   },

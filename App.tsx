@@ -11,6 +11,19 @@ import {StatusBar, StyleSheet, useColorScheme, View} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import ChatListItem from './src/components/ChatListItem';
 
+const chat = {
+  id: '1',
+  user: {
+    image:
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg',
+    name: 'Lukas',
+  },
+  lastMessage: {
+    text: 'Oke',
+    createdAt: '07:30',
+  },
+};
+
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -25,7 +38,7 @@ function App(): JSX.Element {
       />
 
       {/* 👇 Render a ChatListItem */}
-      <ChatListItem />
+      <ChatListItem chat={chat} />
     </View>
   );
 }
