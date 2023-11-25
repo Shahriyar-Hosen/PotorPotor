@@ -17,6 +17,7 @@ export interface IChatListItem {
     user: {
       image: string;
       name: string;
+      status: string;
     };
     lastMessage: {
       text: string;

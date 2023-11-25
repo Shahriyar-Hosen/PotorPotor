@@ -50,19 +50,21 @@ const MainTabNavigator: FC = () => {
       <Tab.Screen
         name="Chats"
         component={ChatsScreen}
-        options={{
+        options={({navigation}) => ({
           tabBarIcon: ({color, size}) => (
             <Ionicons name="chatbubbles-sharp" size={size} color={color} />
           ),
           headerRight: () => (
             <Entypo
+              onPress={() => navigation.navigate('Contacts')}
               name="new-message"
               size={18}
               color={'royalblue'}
+              // eslint-disable-next-line react-native/no-inline-styles
               style={{marginRight: 15}}
             />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Settings"
