@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import React from 'react';
+import React, {FC} from 'react';
 import {FlatList} from 'react-native';
 import chats from '../assets/data/chats.json';
 import ChatListItem from '../components/ChatListItem';
 
 dayjs.extend(relativeTime);
 
-const ChatsScreen = () => {
+const ChatsScreen: FC = () => {
   return (
     <FlatList
       data={chats}

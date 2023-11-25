@@ -9,7 +9,7 @@ import React, {FC} from 'react';
 import {StatusBar, StyleSheet, useColorScheme, View} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import ChatsScreen from './src/screens/ChatsScreen';
+import ChatScreen from './src/screens/ChatScreen';
 
 const App: FC = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -23,7 +23,7 @@ const App: FC = () => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ChatsScreen />
+      <ChatScreen />
     </View>
   );
 };
