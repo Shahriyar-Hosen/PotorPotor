@@ -8,10 +8,6 @@ import ChatListItem from '../components/ChatListItem';
 dayjs.extend(relativeTime);
 
 const ChatsScreen = () => {
-  const date = new Date();
-
-  console.log('🚀 ~ file: ChatsScreen.tsx:12 ~ ChatsScreen ~ date:', date);
-
   return (
     <FlatList
       data={chats}
