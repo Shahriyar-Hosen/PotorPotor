@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import React, {FC} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import chats from '../assets/data/chats.json';
 import ChatListItem from '../components/ChatListItem';
 
@@ -12,8 +12,15 @@ const ChatsScreen: FC = () => {
     <FlatList
       data={chats}
       renderItem={({item}) => <ChatListItem chat={item} />}
+      style={styles.bg}
     />
   );
 };
 
 export default ChatsScreen;
+
+const styles = StyleSheet.create({
+  bg: {
+    backgroundColor: 'white',
+  },
+});

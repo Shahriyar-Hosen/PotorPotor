@@ -37,10 +37,8 @@ const App: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
+    backgroundColor: 'whitesmoke',
     justifyContent: 'center',
-    paddingVertical: 20,
   },
 });
 

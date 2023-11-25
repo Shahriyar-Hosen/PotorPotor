@@ -1,6 +1,11 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React, {FC, useEffect} from 'react';
-import {FlatList, ImageBackground, StyleSheet} from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  KeyboardAvoidingView,
+  StyleSheet,
+} from 'react-native';
 import messages from '../assets/data/messages.json';
 import bg from '../assets/images/BG.png';
 import InputBox from '../components/InputBox';
@@ -26,23 +31,25 @@ const ChatScreen: FC = () => {
   const route = useRoute<RouteProp<RootStackParamList, IRoute>>();
   const navigation = useNavigation();
 
-  console.log('Route:⤵️');
-  console.log(route);
-
   useEffect(() => {
     navigation.setOptions({title: route.params?.name});
   }, [navigation, route.params?.name]);
 
   return (
-    <ImageBackground source={bg} style={styles.bg}>
-      <FlatList
-        data={messages}
-        renderItem={({item}) => <Message message={item} />}
-        style={styles.list}
-        inverted
-      />
-      <InputBox />
-    </ImageBackground>
+    <KeyboardAvoidingView
+      // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      // keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 90}
+      style={styles.bg}>
+      <ImageBackground source={bg} style={styles.bg}>
+        <FlatList
+          data={messages}
+          renderItem={({item}) => <Message message={item} />}
+          style={styles.list}
+          inverted
+        />
+        <InputBox />
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 };
 
