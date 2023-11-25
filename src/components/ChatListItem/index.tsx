@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React, {FC} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
@@ -28,7 +29,9 @@ const ChatListItem: FC<ICHatListItem> = ({chat}) => {
             {chat.user.name}
           </Text>
 
-          <Text style={styles.subTitle}>{chat.lastMessage.createdAt}</Text>
+          <Text style={styles.subTitle}>
+            {dayjs(chat.lastMessage.createdAt).fromNow(true)}
+          </Text>
         </View>
 
         <Text style={styles.subTitle} numberOfLines={2}>
